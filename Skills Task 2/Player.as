@@ -4,7 +4,7 @@
 	
 	public class Player extends MovieClip {
 		
-		private var isJumping:Boolean = false;
+		public var isJumping:Boolean = false;
 		public const gravAcc:Number = 2;
 		public const gravMax:Number = 30;
 		public var gravSpeed:Number = 0;
@@ -13,7 +13,7 @@
 		public var curSpeed:Number = 0;
 		
 		public function Player() {
-			// constructor code
+			
 		}
 		
 		public function left(): void {
@@ -36,7 +36,6 @@
 			if (isJumping == true && gravSpeed < 0) {
 				isJumping = false;
 				gravSpeed *= 0.4;
-				trace ("hi");
 			}
 		}
 	}

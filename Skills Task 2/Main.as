@@ -16,16 +16,22 @@
 			setupEntity();
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyPress);
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyRelease);
-			stage.addEventListener(Event.ENTER_FRAME, loopMove);
+			stage.addEventListener(Event.ENTER_FRAME, globalLoop);
 		}
 		
-		private var ply: Player = new Player();
-
+		private var ply:Player = new Player();
+		private var gnd:Ground = new Ground();
+		
+		
+		
 		public function setupEntity(): void {
 			trace("Im Sentient");
-			ply.x += 300;
-			ply.y += 200;
+			ply.x = 300;
+			ply.y = 200;
 			addChild(ply);
+			gnd.x = 0
+			gnd.y = 600
+			addChild(gnd);
 		}
 		
 		private function keyPress(k: KeyboardEvent): void {
@@ -43,7 +49,7 @@
 			}
 		}
 
-		private function keyRelease(k: KeyboardEvent): void {
+		private function keyRelease(k:KeyboardEvent):void {
 			if (k.keyCode == Keyboard.SPACE) {
 				ply.jumpStop();
 			}
@@ -59,7 +65,8 @@
 			}
 		}
 
-		public function loopMove(e:Event): void {
+		public function globalLoop(e:Event): void {
+			
 			ply.x += ply.curSpeed;
 			
 			if (up == true) {
@@ -76,6 +83,35 @@
 			}
 			if (right == true) {
 				ply.right();
+			}
+			
+			colS(ply,gnd);
+		}
+		
+		public function colS(colDefP:Object, colDefO:Object): void {
+			if (colDefO.hitTestObject(colDefP)) {
+				if (colDefP.x - colDefP.width / 2 <= colDefO.x + colDefO.width && colDefP.x + colDefP.width / 2 >= colDefO.x + colDefO.width && colDefP.curSpeed < 0) {
+					colDefP.x = colDefO.x + colDefO.width + 1 + colDefP.width / 2;
+					colDefP.curSpeed = 0;
+					left = false;
+				}
+				
+				else if (colDefP.x + colDefP.width / 2 >= colDefO.x && colDefP.x - colDefP.width / 2 <= colDefO.x && colDefP.curSpeed > 0) {
+					colDefP.x = colDefO.x - 1 - colDefP.width / 2;
+					colDefP.curSpeed = 0;
+					right = false;
+				} else {
+					if (colDefP.y - colDefP.height < colDefO.y) {
+						colDefP.y = colDefO.y;
+						colDefP.gravSpeed = 0;
+					}
+					
+					if (colDefP.y > colDefO.y + colDefO.height && colDefP.gravSpeed < 0) {
+						colDefP.y = colDefO.y + colDefO.height + colDefP.height;
+						colDefP.gravSpeed = 0;
+					}
+				}
+				colDefP.isJumping = false;
 			}
 		}
 	}
