@@ -1,13 +1,19 @@
 ﻿package  {
 	
 	import flash.display.MovieClip;
-	//import flash.display.MorphShape;
-	
 	
 	public class Ground extends MovieClip {
 		
-		public function Ground() {
-			
+		//private var killRange:Number = 500;
+		public var returnBool:Boolean;
+		
+		public function checkHit(obj:MovieClip):Boolean {
+			if (this.hitTestObject(obj)) {
+				returnBool = true;
+			} else {
+				returnBool = false;
+			}
+			return (returnBool);
 		}
 		
 		/*public function collide(objO:MovieClip, objP:MovieClip, loc:int):void {

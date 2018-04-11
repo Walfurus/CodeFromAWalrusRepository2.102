@@ -5,6 +5,8 @@
 	public class Player extends MovieClip {
 		
 		public var isJumping:Boolean = false;
+		public var dJump:Boolean = true;
+		
 		public const gravAcc:Number = 2;
 		public const gravMax:Number = 30;
 		public var gravSpeed:Number = 0;
@@ -25,10 +27,21 @@
 		}
 		
 		//sY jump speed
-		public function jumpStart(sY:Number): void {
+		public function jumpStart(sY:Number): void { 
 			if (isJumping == false && gravSpeed == 0){
 				isJumping = true;
+				dJump = false;
 				gravSpeed = -sY;
+				trace ("jumping")
+			}
+		}
+		
+		public function checkDJump(sY:Number):void {
+			if (dJump == false && isJumping == false && Math.abs(gravSpeed) > 0){
+				isJumping = true;
+				dJump = true;
+				gravSpeed = -sY;
+				trace ("its me");
 			}
 		}
 		
