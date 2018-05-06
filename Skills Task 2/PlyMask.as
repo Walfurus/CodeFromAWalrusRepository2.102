@@ -3,11 +3,7 @@
 	import flash.display.MovieClip;
 	
 	public class PlyMask extends MovieClip {
-
-		public function PlyMask() {
-			// constructor code
-		}
-
+			//nothing here, only the default movieclip class
 	}
 	
 }

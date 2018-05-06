@@ -1,65 +1,84 @@
 ﻿package  {
-	import flash.display.DisplayObjectContainer;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
-	import flash.display.BitmapData;
-	import flash.geom.Matrix;
 	
-	public class External {
+	public class External {					//As this is not by default meant to be anything other than a script for import, this cannot be extended (else do not pass go...well you can't anyway)
 		
-		/*private var returnCollide:Boolean;
-		
-		private var objPointP:Point;
-		private var objPointO:Point;
-		
-		private var objRectP:Rectangle;
-		private var objRectO:Rectangle;
-		
-		private var objBmpP:BitmapData;
-		private var objBmpO:BitmapData;
-		
-		private var objOffsetP:Matrix;
-		private var objOffsetO:Matrix;*/
-
-		public function randNum (minNum:Number, maxNum:Number):Number {
-			return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
-		}
-		
-		//public function collide(objP:DisplayObjectContainer, objO:DisplayObjectContainer):Boolean {
-		//	returnCollide = false;
-		//	
-		//	//trace (obj);
-		//	
-		//	objRectP = objO.getBounds(objO);
-		//	objOffsetP = objP.transform.matrix;
-		//	objOffsetP.tx = objP.x - objO.x;
-		//	objOffsetP.ty = objP.y - objO.y;
-		//	
-		//	objRectO = objP.getBounds(objP);
-		//	objOffsetO = objO.transform.matrix;
-		//	objOffsetO.tx = objO.x - objO.x;
-		//	objOffsetO.ty = objO.y - objO.y;
-		//	
-		//	objBmpP = new BitmapData(objRectP.width, objRectP.height, true, 0);
-		//	objBmpP.draw(objO, objOffsetO);
-		//	
-		//	objBmpO = new BitmapData(objRectO.width, objRectO.height, true, 0);
-		//	objBmpO.draw(objP, objOffsetP);
-		//	
-		//	objPointP = new Point(objRectP.x, objRectP.y);
-		//	objPointO = new Point(objRectO.x, objRectO.y);
-		//	
-		//	if (objBmpP.hitTest(objPointP, 255, objBmpO, objPointO, 255)) {
-		//		returnCollide = true;
-		//		trace ("hi");
-		//	}
-		//	
-		//	objBmpP.dispose();
-		//	objBmpO.dispose();
-		//	
-		//	return returnCollide;
-		//}
-
-	}
-	
+		public function randNum (minNum:Number, maxNum:Number):Number {					//Number return function - takes both minimum number and maximum number range
+			return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);		//Generates a random number that is between the two variables set
+		}																				//That is about it for External
+	}																					//Have a penguin
 }
+/*
+	
+                                    ooo
+                               ooo$$$$$$$$$$$oo
+                            o$$$$$$$$$$$$$$$$$$$ooo
+                          o$$$$$$$$$$$$$$$$$"$$$$$$$oo
+                       o$$$$$$$$$$$$$$$$$$$  o $$$$$$$$$$$$$$oooo
+                      o$$$$"""$$$$$$$$$$$$$oooo$$$$$$$$$$$$$"""
+                    oo$""      "$$$$$$$$$$$$$$$$$$$$$$$$"
+                   o$$          $$$$$$$$$$$$$$$$$$$$$$"
+                  o$$            $$$$$$$$$$$$$$$$$$$$
+                o$$$$             $$$$$$$$$$$$$$$$$"
+               o$$$$$$oooooooo "                $"
+              $$$$$$$$$$$$$$"
+             $$$$$$$$$$$$$$
+            o$$$$$$$$$$$$$                         o
+           o$$$$$$$$$$$$$                           o
+          o$$$$$$$$$$$$$$                            "o
+         o$$$$$$$$$$$$$$$                             "o
+        o$$$$$$$$$$$$$$$$                              $
+       o$$$$$$$$$$$$$$$$"                              "
+       $$$$$$$$$$$$$$$$$                                $
+      o$$$$$$$$$$$$$$$$$                                $
+      $$$$$$$$$$$$$$$$$                                 $
+     $$$$$$$$$$$$$$$$$$                                 "
+     $$$$$$$$$$$$$$$$$            Im a Penguin           $
+    $$$$$$$$$$$$$$$$$                                    $
+    $$$$$$$$$$$$$$$$"                                    $$
+   $$$$$$$$$$$$$$$$$                                      $o
+   $$$$$$$$$$$$$$$$$                                      $$
+  $$$$$$$$$$$$$$$$$$                                       $
+  $$$$$$$$$$$$$$$$$$o                                      $$
+ $$$$$$$$$$$$$$$$$$$$o                                     $$
+ $$$$$$$$$$$$$$$$$$$$$$o                                   "$
+ $$$$$$$$$$$$$$$$$$$$$$$$o                                  $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$                                 $$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$                                $$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                               $$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$o                              $$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$o                             $$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                             $$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                             $"
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                            $$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                            $"
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                            $
+ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$                            o$
+ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$                            $"
+ $$$$$$$$$$$$$$$$$$$$$$$$$$$$"                            $
+ $$$$$$$$$$$$$$$$$$$$$$$$$$$"                             $
+  $$$$$$$$$$$$$$$$$$$$$$$$$"                             $$
+  $$$$$$$$$$$$$$$$$$$$$$$$"                              $$
+  $$$$$$$$$$$$$$$$$$$$$$$                                $$
+   $$$$$$$$$$$$$$$$$$$$$                                o$$
+   $$$$$$$$$$$$$$$$$$$$                                 $$"
+   "$$$$$$$$$$$$$$$$$$                                  $$
+    $$$$$$$$$$$$$$$$$                                  o$$
+    "$$$$$$$$$$$$$$$"                                  $$
+     $$$$$$$$$$$$$$$                                   $$
+     "$$$$$$$$$$$$$"                                  o$
+      $$$$$$$$$$$$"                                   $$
+      $$$$$$$$$$$"                                    $$
+       $$$$$$$$$"                                    $$"
+       $$$$$$$$$                                     $$
+       "$$$$$$$"                                    $$
+        $$$$$$$o                                    $"
+       o$$$$$$$$                                   $$
+       $$$$$$$$$                                   $$
+      o$$$$$$$$$                                   $"
+      $$$$$$$$$$                                  $$
+      "$$$$$$$$$                                o$""
+       "$$$$$$$$                          ooooo$$oo
+          ""$$$$$o                oooo$$$$$$$$$$$$$$ooo
+             "$$$$$$ooooooo     """""""""$$$""""$$o   ""
+                                                  "
+*/
