@@ -14,10 +14,6 @@
 		private const maxSpeed:Number = 10;
 		public var curSpeed:Number = 0;
 		
-		public function Player() {
-			
-		}
-		
 		public function left(): void {
 			curSpeed = -maxSpeed;
 		}
