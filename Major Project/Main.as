@@ -17,10 +17,12 @@
 		
 		private var ply:Player = new Player();
 		
+		private var commands:Array = new Array();
+		
 		public function Main() {
 			stage.addEventListener(Event.ENTER_FRAME, globalLoop);
 			forwards.addEventListener(MouseEvent.CLICK, fwdCom);
-			jmp.addEventListener(MouseEvent.CLICK, jmpCom);
+			execute.addEventListener(MouseEvent.CLICK, runCommands);
 			setupPly();
 		}
 		
@@ -31,16 +33,34 @@
 		}
 		
 		private var ckCom:Boolean = false;
-		private var jmpCom:Boolean = false;
+		private var jumpCom:Boolean = false;
+		
+		
+		//ckCom = true;
+		//timeC.start();
+		//timeC.addEventListener(TimerEvent.TIMER_COMPLETE, endCom);
+		
+		private var placeLocX:Number = 254;
+		private var placeLocY:Number = 554;
+		private var delayAdd:Number;
+		
+		private var delayBool:Boolean = false;
 		
 		private function fwdCom(e:MouseEvent):void {
-			ckCom = true;
-			timeC.start();
-			timeC.addEventListener(TimerEvent.TIMER_COMPLETE, endCom);
+			var forPlace:seqFor = new seqFor();
+			forPlace.exeTime = Number(inputTest.text);
+			trace(forPlace.exeTime);
+			forPlace.x = placeLocX;
+			forPlace.y = placeLocY;
+			addChild(forPlace);
+			commands.push(seqFor);
+			placeLocX += 100;
+			trace (commands);
+			delayBool = true;
 		}
 		
-		private function jmpCom(e:MouseEvent):void {
-			jmpCom:Boolean = true;
+		private function runCommands(e:MouseEvent):void {
+			
 		}
 		
 		private function endCom(e:TimerEvent):void {
@@ -50,6 +70,7 @@
 		private var dly:uint = 3000;
 		private var rpt:uint = 1;
 		private var timeC:Timer = new Timer(dly,rpt);
+		//private var timeD:Timer = new Timer(dlyC,rptC);
 		private var debug:Number = 0;
 		
 		private function globalLoop(e:Event):void {
@@ -62,6 +83,9 @@
 				ply.y += ply.gravSpeed;
 			}
 			
+			dly = commands[0].exeTime;
+			
+			
 			ply.x += ply.curSpeed;
 			colS(ply,gnd);
 			
@@ -71,6 +95,11 @@
 				debug++;
 			} else {
 				ply.stopPly();
+			}
+			
+			if (jumpCom == true) {
+				ply.jumpStart(30);
+				jumpCom = false;
 			}
 		}
 		
