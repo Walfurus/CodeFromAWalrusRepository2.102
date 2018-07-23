@@ -1,16 +1,19 @@
 ﻿package  {
 	import flash.display.MovieClip;
 	
-	public class Tile extends MovieClip{
+	public class Tile extends MovieClip {
 		
-		public var objID:uint;
-		public function Tile() {
-			if (this.currentFrame == 1) {
-				objID = 1;
-				trace objID;
-			}
+		private var tileY:Number = 0;
+		
+		
+		public function Tile():void {
+			tileY = 0;
 		}
-
+		
+		public function checkY():Number {
+			return (tileY);
+		}
+		
 	}
 	
 }

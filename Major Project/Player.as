@@ -40,6 +40,7 @@
 			if (isJumping == false && gravSpeed == 0){
 				isJumping = true;
 				gravSpeed = -sY;
+				trace ("hi");
 			}
 		}
 		
@@ -51,5 +52,3 @@
 		}
 	}
 }
-
-//alex is the best friend I've ever had, I leave all of my posessions to him when I die

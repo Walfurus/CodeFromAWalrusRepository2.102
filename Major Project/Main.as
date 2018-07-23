@@ -10,6 +10,7 @@
 	import Utilities;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
+	import flash.display.Sprite;
 	
 	public class Main extends MovieClip {
 		
@@ -25,6 +26,25 @@
 		
 		private var ply:Player = new Player();
 		private var map:Map = new Map();
+		
+		private var tileSet:Array = [[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]];
 		
 		//private var commands:Array = new Array();
 		
@@ -44,8 +64,8 @@
             }
 		}
 		
-		private function init():void {
-			
+		private function init(e:Event = null):void {
+			lConstruct(tileSet);
 		}
 		
 		private function setupPly():void {
@@ -53,7 +73,8 @@
 			ply.x = 300;
 			addChild(ply);
 		}
-		
+		 
+		 
 		private function spawnDoor():void {
 			
 		}
@@ -63,7 +84,7 @@
 				ply.jumpStart(20);
 				jUp = true;
 			}
-			if (k.keyCode == Keyboard.A) {33
+			if (k.keyCode == Keyboard.A) {
 				left = true;
 			}
 			if (k.keyCode == Keyboard.D) {
@@ -141,45 +162,53 @@
 			trace(dly);
 		}
 		
-		private var tileSet:Array = [[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]];
+		
 		
 		
 		private var gndArray:Array = new Array();
 		
 		private function lConstruct(layout:Array) {
-			var tileSet:MovieClip = new MovieClip();
+			if (tiles != null) {
+				removeChild(tiles);
+			}
+			var tiles:MovieClip = new MovieClip();
 			for (var q:int=0;q<layout[0].length;q++) {
-				for (var s:int=0;q<layout.length;s++) {
+				for (var s:int=0;s<layout.length;s++) {
 					var curTile:Tile = new Tile();
 					curTile.x = q*40;
 					curTile.y = s*40;
 					curTile.name = q+"-"+s;
-					tileSet.addChild(curTile);
+					tiles.addChild(curTile);
 					gndArray.push(curTile);
-					curTile.gotoAndStop(int(layout[s][q]+1);
+					curTile.gotoAndStop(int(layout[s][q])+1);
 				}
 			}
-				addChild(tileSet);
+				addChild(tiles);
+		}
+		
+		//private var gameLay:Array = new Array();
+		
+		public function getTile(xs,ys){
+			return tileSet[Math.floor(ys/40)][Math.floor(xs/40)]
 		}
 		
 		private function globalLoop(e:Event):void {
+			
+			if (getTile(ply.x,ply.y) == 1){
+				ply.gravSpeed = 0;
+				for (var ss:int=0;ss<gndArray.length;ss++) {
+					if (gndArray[ss].hitTestObject(ply)) {
+						ply.y = gndArray[ss].y;
+						trace(ply.gravSpeed);
+						ply.isJumping = false;
+						jUp = false;
+					}
+				}
+			}
+			
+			trace (ply.gravSpeed);
+			trace (ply.isJumping);
+			trace (jUp);
 			
 			if (sideScroll == true) {
 				if (jUp == true) {
@@ -199,7 +228,10 @@
 					ply.right(5);
 				}
 				
-				colS(ply,gnd);
+				for (var h:int;h<gndArray.length;h++){
+					//colS(ply,gndArray[h])
+				}
+				
 				
 				for (var i:int;i<doorList.length;i++) {
 					if (removeRenders == true) {
@@ -231,11 +263,6 @@
 				
 				for (var k:int;k<doorList.length;k++) {
 					if (ply.hitTestObject(doorList[k])) {
-						
-						
-						
-						
-						
 						
 						
 						topDown = false;
