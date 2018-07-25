@@ -1,4 +1,5 @@
-﻿package  {
+﻿
+package  {
 	import flash.display.MovieClip;
 	import flash.display.DisplayObject;
 	import flash.events.KeyboardEvent;
@@ -27,23 +28,23 @@
 		private var ply:Player = new Player();
 		private var map:Map = new Map();
 		
-		private var tileSet:Array = [[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		private var tileSet:Array = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
 									 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]];
 		
 		//private var commands:Array = new Array();
@@ -57,37 +58,35 @@
 			setupPly();
 			stop();
 			util = new Utilities();
-			if (stage) {
-                init();
-            } else {
-                addEventListener(Event.ADDED_TO_STAGE,init);
-            }
+			init();
 		}
 		
 		private function init(e:Event = null):void {
 			lConstruct(tileSet);
+			jUp = true;
 		}
-		
-		private function setupPly():void {
-			ply.y = 300;
-			ply.x = 300;
-			addChild(ply);
-		}
+		asd
 		 
 		 
 		private function spawnDoor():void {
 			
 		}
 		
+		private var jumping:Boolean = false;
+		private var canLeft:Boolean = true;
+		private var canRight:Boolean = true;
+		private var canJump:Boolean = true;
+		
 		private function keyPress(k:KeyboardEvent):void {
-			if (k.keyCode == Keyboard.SPACE && sideScroll == true) {
+			if (k.keyCode == Keyboard.SPACE && /*getTile(ply.x,ply.y+2) == 1 &&*/ sideScroll == true) {
 				ply.jumpStart(20);
-				jUp = true;
+				//jUp = true;
+				jumping = true;
 			}
-			if (k.keyCode == Keyboard.A) {
+			if (k.keyCode == Keyboard.A && canLeft == true) {
 				left = true;
 			}
-			if (k.keyCode == Keyboard.D) {
+			if (k.keyCode == Keyboard.D && canRight == true) {
 				right = true;
 			}
 			if (k.keyCode == Keyboard.W && sideScroll == false) {
@@ -101,6 +100,7 @@
 		private function keyRelease(k:KeyboardEvent):void {
 			if (k.keyCode == Keyboard.SPACE) {
 				ply.jumpStop();
+				jumping = false;
 			}
 			
 			if (k.keyCode == Keyboard.A) {
@@ -189,35 +189,88 @@
 		//private var gameLay:Array = new Array();
 		
 		public function getTile(xs,ys){
-			return tileSet[Math.floor(ys/40)][Math.floor(xs/40)]
+			if(ys>0 && xs>0 && (tileSet[0].length)*40>xs && (tileSet.length)*40>ys){
+				return tileSet[Math.floor(ys/40)][Math.floor(xs/40)]
+			} else {
+				return (1);
+			}
 		}
+		
+		private var gndDebug:Boolean = false;
 		
 		private function globalLoop(e:Event):void {
 			
-			if (getTile(ply.x,ply.y) == 1){
-				ply.gravSpeed = 0;
-				for (var ss:int=0;ss<gndArray.length;ss++) {
-					if (gndArray[ss].hitTestObject(ply)) {
-						ply.y = gndArray[ss].y;
-						trace(ply.gravSpeed);
-						ply.isJumping = false;
-						jUp = false;
-					}
-				}
-			}
+			
 			
 			trace (ply.gravSpeed);
-			trace (ply.isJumping);
-			trace (jUp);
+			//trace (ply.isJumping);
 			
 			if (sideScroll == true) {
-				if (jUp == true) {
-					if (ply.gravSpeed > ply.gravMax) {
-						ply.gravSpeed = ply.gravMax;
-					} else {
-						ply.gravSpeed += ply.gravAcc;
+				
+				for (var ss:int=0;ss<gndArray.length;ss++) {
+					if (getTile(ply.x,ply.y+1) == 1 || getTile(ply.x-29,ply.y+1) == 1 || getTile(ply.x+29,ply.y+1) == 1){
+						//ply.y -= 1;
+						ply.isJumping = false;
+						//jUp = false;
+						if (ply.hitTestObject(gndArray[ss])){
+							ply.y = gndArray[ss].y;
+							if (jumping == false) {
+								ply.gravSpeed = 0;
+								jUp = false;
+							} else {
+								jUp = true;
+							}
+							
+							if (ply.gravSpeed >= 0) {
+								
+								jUp = false;
+							}
+						}
 					}
-					ply.y += ply.gravSpeed;
+					
+					if (getTile(ply.x,ply.y+1) == 0){
+						jUp = true; 
+					}
+					
+					
+					trace (ply.gravSpeed);
+				
+					if (getTile(ply.x-31,ply.y-2) == 1 || getTile(ply.x-31,ply.y-23) == 1) {
+						if (gndArray[ss].hitTestObject(ply)){
+							ply.x += 5;
+							ply.x = (gndArray[ss].x + 75);
+							ply.curSpeedX = 0;
+							//canLeft = false;
+							//trace ("hi")
+						}
+					} //else {
+						//canLeft = true;
+					//}
+					trace (ply.currentFrame);
+				
+					if (getTile(ply.x+31,ply.y-2) == 1 || getTile(ply.x+31,ply.y-23)){
+						if (gndArray[ss].hitTestObject(ply)){
+							ply.x -= 5;
+							ply.x = (gndArray[ss].x - 35);
+							ply.curSpeedX = 0;
+							//canRight = false;
+							//trace ("hi")
+						}
+					} //else {
+						//canRight = true;
+					//}
+				
+					if (getTile(ply.x,ply.y-52) == 1 || getTile(ply.x-29,ply.y-52) == 1 || getTile(ply.x+29,ply.y-52) == 1){
+						ply.gravSpeed = 0;
+					}
+				}
+					if (jUp == true) {
+						if (ply.gravSpeed > ply.gravMax) {
+							ply.gravSpeed = ply.gravMax;
+						} else {
+							ply.gravSpeed += ply.gravAcc;
+						}
+						ply.y += ply.gravSpeed;
 				}
 				
 				if (left == true) {
@@ -263,8 +316,7 @@
 				
 				for (var k:int;k<doorList.length;k++) {
 					if (ply.hitTestObject(doorList[k])) {
-						
-						
+						gotoAndStop(1);
 						topDown = false;
 						sideScroll = true;
 						removeChild(map);

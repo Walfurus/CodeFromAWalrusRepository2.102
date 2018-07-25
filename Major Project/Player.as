@@ -8,7 +8,7 @@
 		public const gravAcc:Number = 1;		//Gravity (y) Ccceleration Constant (unchangeable nor unchanging variable)
 		public const gravMax:Number = 25;		//Gravity Cap Constant	(typically used to save on memory)
 		private const floatV:Number = 0.4;		//Player Float Constant, How much floating do you want the player to experience (WARNING, Player floating increase is exponential, modify with care)
-		public var gravSpeed:Number = 0;		//Current y Speed Variable, more accurately the speed of gravity as the robot isn't actually doing the actuation himself (if you are confused, refer to coding for dummies)
+		public var gravSpeed:Number = 0;
 		
 		
 		private const maxSpeed:Number = 5;		//Maximum x Speed Constant
@@ -46,7 +46,7 @@
 		
 		public function jumpStop(): void {
 			if (isJumping == true && gravSpeed < 0) {
-				isJumping = false;
+				//isJumping = false;
 				gravSpeed *= floatV;
 			}
 		}
