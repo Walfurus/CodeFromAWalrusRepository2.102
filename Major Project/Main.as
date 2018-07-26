@@ -65,7 +65,12 @@ package  {
 			lConstruct(tileSet);
 			jUp = true;
 		}
-		asd
+		
+		private function setupPly():void {
+			ply.y = 300;
+			ply.x = 300;
+			addChild(ply);
+		}
 		 
 		 
 		private function spawnDoor():void {
@@ -207,13 +212,15 @@ package  {
 			
 			if (sideScroll == true) {
 				
-				for (var ss:int=0;ss<gndArray.length;ss++) {
+				
 					if (getTile(ply.x,ply.y+1) == 1 || getTile(ply.x-29,ply.y+1) == 1 || getTile(ply.x+29,ply.y+1) == 1){
 						//ply.y -= 1;
 						ply.isJumping = false;
 						//jUp = false;
-						if (ply.hitTestObject(gndArray[ss])){
-							ply.y = gndArray[ss].y;
+						for (var ss:int=0;ss<gndArray.length;ss++) {
+							if (ply.hitTestObject(gndArray[ss])){
+								ply.y = gndArray[ss].y;
+							} 
 							if (jumping == false) {
 								ply.gravSpeed = 0;
 								jUp = false;
@@ -222,7 +229,6 @@ package  {
 							}
 							
 							if (ply.gravSpeed >= 0) {
-								
 								jUp = false;
 							}
 						}
@@ -236,26 +242,35 @@ package  {
 					trace (ply.gravSpeed);
 				
 					if (getTile(ply.x-31,ply.y-2) == 1 || getTile(ply.x-31,ply.y-23) == 1) {
-						if (gndArray[ss].hitTestObject(ply)){
-							ply.x += 5;
-							ply.x = (gndArray[ss].x + 75);
-							ply.curSpeedX = 0;
-							//canLeft = false;
-							//trace ("hi")
+						for (var vv:int=0;vv<gndArray.length;vv++) {
+							if (gndArray[vv].hitTestObject(ply)) {
+								ply.x = (gndArray[vv].x + 75);
+								ply.x += 5;
+								ply.curSpeedX = 0;
+								//canLeft = false;
+								//trace ("hi")
+							}
+							
 						}
+						
 					} //else {
 						//canLeft = true;
 					//}
 					trace (ply.currentFrame);
 				
 					if (getTile(ply.x+31,ply.y-2) == 1 || getTile(ply.x+31,ply.y-23)){
-						if (gndArray[ss].hitTestObject(ply)){
-							ply.x -= 5;
-							ply.x = (gndArray[ss].x - 35);
-							ply.curSpeedX = 0;
-							//canRight = false;
-							//trace ("hi")
+						for (var qq:int=0;qq<gndArray.length;qq++) {
+							if (gndArray[qq].hitTestObject(ply)){
+								ply.x = (gndArray[qq].x - 35);
+								ply.x -= 5;
+								ply.curSpeedX = 0;
+								//canRight = false;
+								//trace ("hi")
+							}
+							
 						}
+							
+							
 					} //else {
 						//canRight = true;
 					//}
@@ -263,7 +278,7 @@ package  {
 					if (getTile(ply.x,ply.y-52) == 1 || getTile(ply.x-29,ply.y-52) == 1 || getTile(ply.x+29,ply.y-52) == 1){
 						ply.gravSpeed = 0;
 					}
-				}
+				
 					if (jUp == true) {
 						if (ply.gravSpeed > ply.gravMax) {
 							ply.gravSpeed = ply.gravMax;
