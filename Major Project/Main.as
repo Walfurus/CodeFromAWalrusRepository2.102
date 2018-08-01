@@ -20,6 +20,7 @@ package  {
 		private var jUp:Boolean = false;
 		private var up:Boolean = false;
 		private var down:Boolean = false;
+		private var drop:Boolean = false;
 		//private var jumpSet:Boolean = false;
 		private var util:Utilities;
 		
@@ -28,26 +29,49 @@ package  {
 		private var ply:Player = new Player();
 		private var map:Map = new Map();
 		
-		private var tileSet:Array = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]];
+		private var tileSet:Array = [[[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,2,2,2,1,1,1,0,0,0,0,0,0,0,0,2,2,2,2,2,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+									 
+									 [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,2,2,2,2,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
+									  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+									  
+									 [[0,0],
+									  [0,0]]];
 		
-		//private var commands:Array = new Array();
+		private var colTArray:Array = new Array();
+		private var lvlSelect:uint = 1;
 		
 		public function Main() {
 			stage.addEventListener(Event.ENTER_FRAME, globalLoop);
@@ -58,12 +82,22 @@ package  {
 			setupPly();
 			stop();
 			util = new Utilities();
-			init();
+			inital();
 		}
 		
-		private function init(e:Event = null):void {
-			lConstruct(tileSet);
+		private function inital():void {
+			lvlConstruct(1);
 			jUp = true;
+		}
+		
+		private function lvlConstruct(lvlSet:uint):void {
+			lConstruct(tileSet[lvlSet]);
+			colTArray = tileSet[lvlSet];
+		}
+		
+		private function lvlDestruct():void {
+			removeChild(tiles);
+			//colTArray.length = 0;
 		}
 		
 		private function setupPly():void {
@@ -99,6 +133,8 @@ package  {
 			}
 			if (k.keyCode == Keyboard.S && sideScroll == false) {
 				down = true;
+			} else if (k.keyCode == Keyboard.S) {
+				drop = true;
 			}
 		}
 		
@@ -129,6 +165,7 @@ package  {
 			if (k.keyCode == Keyboard.S) {
 				down = false;
 				tDown = false;
+				drop = false;
 				ply.stopPly();
 			}
 		}
@@ -167,16 +204,10 @@ package  {
 			trace(dly);
 		}
 		
-		
-		
-		
 		private var gndArray:Array = new Array();
+		public var tiles:MovieClip = new MovieClip();
 		
 		private function lConstruct(layout:Array) {
-			if (tiles != null) {
-				removeChild(tiles);
-			}
-			var tiles:MovieClip = new MovieClip();
 			for (var q:int=0;q<layout[0].length;q++) {
 				for (var s:int=0;s<layout.length;s++) {
 					var curTile:Tile = new Tile();
@@ -186,6 +217,7 @@ package  {
 					tiles.addChild(curTile);
 					gndArray.push(curTile);
 					curTile.gotoAndStop(int(layout[s][q])+1);
+					trace ("bulding");
 				}
 			}
 				addChild(tiles);
@@ -194,98 +226,112 @@ package  {
 		//private var gameLay:Array = new Array();
 		
 		public function getTile(xs,ys){
-			if(ys>0 && xs>0 && (tileSet[0].length)*40>xs && (tileSet.length)*40>ys){
-				return tileSet[Math.floor(ys/40)][Math.floor(xs/40)]
+			if(ys>0 && xs>0 && (colTArray[0].length)*40>xs && (colTArray.length)*40>ys){
+				return colTArray[Math.floor(ys/40)][Math.floor(xs/40)]
 			} else {
-				return (1);
+				return (0);
 			}
 		}
 		
 		private var gndDebug:Boolean = false;
+		private var testInt:Number;
 		
 		private function globalLoop(e:Event):void {
 			
-			
-			
-			trace (ply.gravSpeed);
-			//trace (ply.isJumping);
+			//trace (colTArray);
 			
 			if (sideScroll == true) {
 				
+				if (ply.x <= 70) {
+					ply.x = 71;
+				}
 				
-					if (getTile(ply.x,ply.y+1) == 1 || getTile(ply.x-29,ply.y+1) == 1 || getTile(ply.x+29,ply.y+1) == 1){
-						//ply.y -= 1;
-						ply.isJumping = false;
-						//jUp = false;
-						for (var ss:int=0;ss<gndArray.length;ss++) {
-							if (ply.hitTestObject(gndArray[ss])){
+				if (ply.x >= 1209) {
+					ply.x = 1209;
+				}
+
+				if ((getTile(ply.x,ply.y+1) == 1 || getTile(ply.x-29,ply.y+1) == 1 || getTile(ply.x+29,ply.y+1) == 1) || (getTile(ply.x,ply.y+1) == 2 || getTile(ply.x-29,ply.y+1) == 2 || getTile(ply.x+29,ply.y+1) == 2) || (getTile(ply.x,ply.y+1) == 3 || getTile(ply.x-29,ply.y+1) == 3 || getTile(ply.x+29,ply.y+1) == 3) || (getTile(ply.x,ply.y+1) == 4 || getTile(ply.x-29,ply.y+1) == 4 || getTile(ply.x+29,ply.y+1) == 4) || (getTile(ply.x,ply.y+1) == 5 || getTile(ply.x-29,ply.y+1) == 5 || getTile(ply.x+29,ply.y+1) == 5) || (getTile(ply.x,ply.y+1) == 6 || getTile(ply.x-29,ply.y+1) == 6 || getTile(ply.x+29,ply.y+1) == 6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    )){
+					//ply.y -= 1;
+					ply.isJumping = false;
+					//jUp = false;
+					for (var ss:int=0;ss<gndArray.length;ss++) {
+						if (ply.hitTestObject(gndArray[ss])){
+							jUp == true;
+							if ((getTile(ply.x,ply.y+1) == 1 || getTile(ply.x-29,ply.y+1) == 1 || getTile(ply.x+29,ply.y+1) == 1)) {
 								ply.y = gndArray[ss].y;
-							} 
-							if (jumping == false) {
-								ply.gravSpeed = 0;
-								jUp = false;
-							} else {
+							} else if ((getTile(ply.x,ply.y+1) == 2 || getTile(ply.x-29,ply.y+1) == 2 || getTile(ply.x+29,ply.y+1) == 2) && drop == false) {
+								ply.y = gndArray[ss].y;
+								//trace ("hiya");
+							} else if ((getTile(ply.x,ply.y+1) == 2 || getTile(ply.x-29,ply.y+1) == 2 || getTile(ply.x+29,ply.y+1) == 2) && drop == true) {
 								jUp = true;
 							}
-							
-							if (ply.gravSpeed >= 0) {
-								jUp = false;
-							}
-						}
-					}
-					
-					if (getTile(ply.x,ply.y+1) == 0){
-						jUp = true; 
-					}
-					
-					
-					trace (ply.gravSpeed);
-				
-					if (getTile(ply.x-31,ply.y-2) == 1 || getTile(ply.x-31,ply.y-23) == 1) {
-						for (var vv:int=0;vv<gndArray.length;vv++) {
-							if (gndArray[vv].hitTestObject(ply)) {
-								ply.x = (gndArray[vv].x + 75);
-								ply.x += 5;
-								ply.curSpeedX = 0;
-								//canLeft = false;
-								//trace ("hi")
-							}
-							
-						}
+						} 
 						
-					} //else {
+						if (jumping == false) {
+							if ((getTile(ply.x,ply.y+1) == 2 || getTile(ply.x-29,ply.y+1) == 2 || getTile(ply.x+29,ply.y+1) == 2) && drop == true){
+								jUp = true;
+							} else {
+								jUp = false;
+								ply.gravSpeed = 0;
+							}
+						} else {
+							jUp = true;
+						}
+							
+						if (ply.gravSpeed >= 0 && drop == false) {
+							jUp = false;
+						}
+					}
+				}
+					
+				if (getTile(ply.x, ply.y) == 0){
+					jUp = true; 
+				}
+					
+					
+					//trace (getTile(ply.x,ply.y));
+					//trace (gndArray.length);
+				
+				if ((getTile(ply.x-31,ply.y-2) == 1 || getTile(ply.x-31,ply.y-23) == 1) && left == true) {
+					for (var vv:int=0;vv<gndArray.length;vv++) {
+						if (gndArray[vv].hitTestObject(ply)) {
+							//ply.x = (gndArray[vv].x + 75);
+							//ply.x += 5;
+							ply.curSpeedX = 0;
+							//canLeft = false;
+							//trace ("hi")
+						}
+					}
+				} //else {
 						//canLeft = true;
 					//}
-					trace (ply.currentFrame);
 				
-					if (getTile(ply.x+31,ply.y-2) == 1 || getTile(ply.x+31,ply.y-23)){
-						for (var qq:int=0;qq<gndArray.length;qq++) {
-							if (gndArray[qq].hitTestObject(ply)){
-								ply.x = (gndArray[qq].x - 35);
-								ply.x -= 5;
-								ply.curSpeedX = 0;
-								//canRight = false;
-								//trace ("hi")
-							}
-							
+				if ((getTile(ply.x+31,ply.y-2) == 1 || getTile(ply.x+31,ply.y-23) == 1) && right == true){
+					for (var qq:int=0;qq<gndArray.length;qq++) {
+						if (gndArray[qq].hitTestObject(ply)){
+							//ply.x = (gndArray[qq].x - 35);
+							ply.x -= 5;
+							ply.curSpeedX = 0;
+							//canRight = false;
+							//trace ("hi")
 						}
-							
-							
-					} //else {
+					}
+				} //else {
 						//canRight = true;
 					//}
 				
-					if (getTile(ply.x,ply.y-52) == 1 || getTile(ply.x-29,ply.y-52) == 1 || getTile(ply.x+29,ply.y-52) == 1){
-						ply.gravSpeed = 0;
+				if (getTile(ply.x,ply.y-52) == 1 || getTile(ply.x-29,ply.y-52) == 1 || getTile(ply.x+29,ply.y-52) == 1){
+					ply.y += 3;
+					ply.gravSpeed = 0;
+				}
+			
+				if (jUp == true) {
+					if (ply.gravSpeed > ply.gravMax) {
+						ply.gravSpeed = ply.gravMax;
+					} else {
+						ply.gravSpeed += ply.gravAcc;
 					}
-				
-					if (jUp == true) {
-						if (ply.gravSpeed > ply.gravMax) {
-							ply.gravSpeed = ply.gravMax;
-						} else {
-							ply.gravSpeed += ply.gravAcc;
-						}
-						ply.y += ply.gravSpeed;
+					ply.y += ply.gravSpeed;
 				}
 				
 				if (left == true) {
@@ -313,12 +359,15 @@ package  {
 				}
 				
 				if (ply.hitTestObject(door)) {
+					lvlDestruct();
+					//lvlConstruct(2);
 					gotoAndStop(2);
 					topDown = true;
 					sideScroll = false;
+					
 					addChild(map);
 					setChildIndex(map,0);
-					trace ("hi");
+					//trace ("hi");
 					dly = util.randNum(5000,15000);
 					
 					if (doorList.length < 1) {
@@ -332,6 +381,7 @@ package  {
 				for (var k:int;k<doorList.length;k++) {
 					if (ply.hitTestObject(doorList[k])) {
 						gotoAndStop(1);
+						lvlConstruct(0);
 						topDown = false;
 						sideScroll = true;
 						removeChild(map);
@@ -395,87 +445,8 @@ package  {
 					}
 				}
 			}
-			
 			ply.x += ply.curSpeedX;
 			ply.y += ply.curSpeedY;
-			
-			
-			
-			
-			
-			
-			
-			
-			//if (delayBool == true && commands.length != 0) {
-				//dly = commands[0].exeTime;
-				//trace(dly);
-			//}
-			
-			//if (runComs == true) {
-				//ckCom = true;
-			//}
-			
-			
-			/*if (ckCom == true) {
-				ply.right();
-				trace(debug)
-				debug++;
-			} else {
-				ply.stopPly();
-			}*/
-			
-			/*if (jumpCom == true) {
-				ply.jumpStart(30);
-				jumpCom = false;
-			}*/
-			
-			/*private var ckCom:Boolean = false;
-		private var jumpCom:Boolean = false;
-		private var placeLocX:Number = 254;
-		private var placeLocY:Number = 554;
-		private var delayAdd:Number;
-		
-		private var delayBool:Boolean = false;
-		
-		private function fwdCom(e:MouseEvent):void {
-			var forPlace:seqFor = new seqFor();
-			forPlace.exeTime = Number(inputTest.text);
-			forPlace.x = placeLocX;
-			forPlace.y = placeLocY;
-			addChild(forPlace);
-			commands.push(forPlace);
-			placeLocX += 100;
-			trace (commands);
-			delayBool = true;
-		}
-		
-		private var runComs:Boolean = false;
-		
-		private function runCommands(e:MouseEvent):void {
-			timeStart();
-		}
-		
-		private function endCom(e:TimerEvent):void {
-			ckCom = false;
-			timeC.removeEventListener(TimerEvent.TIMER_COMPLETE, endCom);
-			commands.shift();
-			if (commands.length != 0) {
-				timeStart();
-			}
-		}
-		*/
-		//private var dly:uint;
-		//private var rpt:uint = 1;
-		
-		//private var timeD:Timer = new Timer(dlyC,rptC);
-		//private var debug:Number = 0;
-		
-		//private function timeStart():void {
-			//timeC.start();
-			//timeC.addEventListener(TimerEvent.TIMER_COMPLETE, endCom);
-			//ckCom = true;
-			//trace (commands);
-		//}
 		}
 		
 		private function colS(colDefP:Object, colDefO:Object): void {

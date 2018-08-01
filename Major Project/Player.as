@@ -40,7 +40,7 @@
 			if (isJumping == false && gravSpeed == 0){
 				isJumping = true;
 				gravSpeed = -sY;
-				trace ("hi");
+				//trace ("hi");
 			}
 		}
 		
