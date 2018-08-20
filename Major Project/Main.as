@@ -12,6 +12,7 @@ package  {
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
 	import flash.display.Sprite;
+	import flash.geom.Point;
 	
 	public class Main extends MovieClip {
 		
@@ -29,24 +30,24 @@ package  {
 		private var ply:Player = new Player();
 		private var map:Map = new Map();
 		
-		private var tileSet:Array = [[[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,2,2,2,1,1,1,0,0,0,0,0,0,0,0,2,2,2,2,2,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+		private var tileSet:Array = [[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+									  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
 									 
 									 [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -86,17 +87,33 @@ package  {
 		}
 		
 		private function inital():void {
-			lvlConstruct(1);
+			lvlConstruct(0);
 			jUp = true;
 		}
 		
-		private function lvlConstruct(lvlSet:uint):void {
-			lConstruct(tileSet[lvlSet]);
-			colTArray = tileSet[lvlSet];
+		private function lvlConstruct(lvl:int):void {
+			switch (lvl) {
+				case 0:
+				spawnPlat(52.5,563.45,2);
+				spawnPlat(387.5,381.5,1);
+				spawnPlat(609.5,222.55,1);
+				spawnPlat(609.5,222.55,1);
+				spawnPlat(971.45,515.45,2);
+				spawnPlat(1820.35,357.5,1);
+				spawnPlat(2417.3,598.45,2);
+				spawnPlat(3227.2,399.5,1);
+				spawnPlat(3738.2,187.55,1);
+				spawnPlat(4299.15,-47.45,2);
+				spawnPlat(3403.95,1244.45,0);
+				spawnPlat(3689.2,1399.45,1);
+				spawnPlat(4627.1,-164.85,3);
+			}
 		}
 		
 		private function lvlDestruct():void {
+			gndArray.length = 0;
 			removeChild(tiles);
+			tiles = new MovieClip();
 			//colTArray.length = 0;
 		}
 		
@@ -225,6 +242,10 @@ package  {
 		
 		//private var gameLay:Array = new Array();
 		
+
+		private var colArray:Array = new Array();
+		private var dorArray:Array = new Array();
+		
 		public function getTile(xs,ys){
 			if(ys>0 && xs>0 && (colTArray[0].length)*40>xs && (colTArray.length)*40>ys){
 				return colTArray[Math.floor(ys/40)][Math.floor(xs/40)]
@@ -233,12 +254,45 @@ package  {
 			}
 		}
 		
+		private function spawnPlat(xP:Number,yP:Number,tP:Number):void {
+				switch (tP) {
+					case 0:
+						var platS:PlatformS = new PlatformS();
+						platS.x = xP;
+						platS.y = yP;
+						colArray.push(platS);
+						addChild(platS);
+					break;
+					case 1:
+						var platM:PlatformM = new PlatformM();
+						platM.x = xP;
+						platM.y = yP;
+						colArray.push(platM);
+						addChild(platM);
+					break;
+					case 2:
+						var platL:PlatformL = new PlatformL();
+						platL.x = xP;
+						platL.y = yP;
+						colArray.push(platL);
+						addChild(platL);
+					break;
+					case 3:
+						var dor:Door = new Door();
+						dor.x = xP;
+						dor.y = yP;
+						dorArray.push(dor);
+						addChild(dor);
+					break;
+			}
+		}
+		
 		private var gndDebug:Boolean = false;
 		private var testInt:Number;
 		
 		private function globalLoop(e:Event):void {
 			
-			//trace (colTArray);
+			trace(jumping);
 			
 			if (sideScroll == true) {
 				
@@ -249,81 +303,89 @@ package  {
 				if (ply.x >= 1209) {
 					ply.x = 1209;
 				}
+				
+				
+				
+				//if ((getTile(ply.x,ply.y) == 1 || getTile(ply.x-29,ply.y) == 1 || getTile(ply.x+29,ply.y) == 1) || (getTile(ply.x,ply.y) == 2 || getTile(ply.x-29,ply.y) == 2 || getTile(ply.x+29,ply.y) == 2) || (getTile(ply.x,ply.y) == 3 || getTile(ply.x-29,ply.y) == 3 || getTile(ply.x+29,ply.y) == 3) || (getTile(ply.x,ply.y) == 4 || getTile(ply.x-29,ply.y) == 4 || getTile(ply.x+29,ply.y+1) == 4) || (getTile(ply.x,ply.y) == 5 || getTile(ply.x-29,ply.y) == 5 || getTile(ply.x+29,ply.y) == 5) || (getTile(ply.x,ply.y) == 6 || getTile(ply.x-29,ply.y) == 6 || getTile(ply.x+29,ply.y) == 6)){
+				//	//ply.y -= 1;
+				//	//jUp = false;
+				//	//for (var ss:int=0;ss<gndArray.length;ss++) {
+				//		//if (ply.hitTestObject(gndArray[ss])){
+				//			jUp == false;
+				//			if ((getTile(ply.x,ply.y) == 1 || getTile(ply.x-29,ply.y) == 1 || getTile(ply.x+29,ply.y) == 1)) {
+				//				if (jumping != true) {
+				//					ply.y -= ply.gravSpeed;
+				//				}
 
-				if ((getTile(ply.x,ply.y+1) == 1 || getTile(ply.x-29,ply.y+1) == 1 || getTile(ply.x+29,ply.y+1) == 1) || (getTile(ply.x,ply.y+1) == 2 || getTile(ply.x-29,ply.y+1) == 2 || getTile(ply.x+29,ply.y+1) == 2) || (getTile(ply.x,ply.y+1) == 3 || getTile(ply.x-29,ply.y+1) == 3 || getTile(ply.x+29,ply.y+1) == 3) || (getTile(ply.x,ply.y+1) == 4 || getTile(ply.x-29,ply.y+1) == 4 || getTile(ply.x+29,ply.y+1) == 4) || (getTile(ply.x,ply.y+1) == 5 || getTile(ply.x-29,ply.y+1) == 5 || getTile(ply.x+29,ply.y+1) == 5) || (getTile(ply.x,ply.y+1) == 6 || getTile(ply.x-29,ply.y+1) == 6 || getTile(ply.x+29,ply.y+1) == 6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    )){
-					//ply.y -= 1;
-					ply.isJumping = false;
-					//jUp = false;
-					for (var ss:int=0;ss<gndArray.length;ss++) {
-						if (ply.hitTestObject(gndArray[ss])){
-							jUp == true;
-							if ((getTile(ply.x,ply.y+1) == 1 || getTile(ply.x-29,ply.y+1) == 1 || getTile(ply.x+29,ply.y+1) == 1)) {
-								ply.y = gndArray[ss].y;
-							} else if ((getTile(ply.x,ply.y+1) == 2 || getTile(ply.x-29,ply.y+1) == 2 || getTile(ply.x+29,ply.y+1) == 2) && drop == false) {
-								ply.y = gndArray[ss].y;
-								//trace ("hiya");
-							} else if ((getTile(ply.x,ply.y+1) == 2 || getTile(ply.x-29,ply.y+1) == 2 || getTile(ply.x+29,ply.y+1) == 2) && drop == true) {
-								jUp = true;
-							}
-						} 
-						
-						if (jumping == false) {
-							if ((getTile(ply.x,ply.y+1) == 2 || getTile(ply.x-29,ply.y+1) == 2 || getTile(ply.x+29,ply.y+1) == 2) && drop == true){
-								jUp = true;
-							} else {
-								jUp = false;
-								ply.gravSpeed = 0;
-							}
-						} else {
-							jUp = true;
-						}
-							
-						if (ply.gravSpeed >= 0 && drop == false) {
-							jUp = false;
-						}
-					}
-				}
-					
-				if (getTile(ply.x, ply.y) == 0){
-					jUp = true; 
-				}
-					
-					
-					//trace (getTile(ply.x,ply.y));
-					//trace (gndArray.length);
-				
-				if ((getTile(ply.x-31,ply.y-2) == 1 || getTile(ply.x-31,ply.y-23) == 1) && left == true) {
-					for (var vv:int=0;vv<gndArray.length;vv++) {
-						if (gndArray[vv].hitTestObject(ply)) {
-							//ply.x = (gndArray[vv].x + 75);
-							//ply.x += 5;
-							ply.curSpeedX = 0;
-							//canLeft = false;
-							//trace ("hi")
-						}
-					}
-				} //else {
-						//canLeft = true;
-					//}
-				
-				if ((getTile(ply.x+31,ply.y-2) == 1 || getTile(ply.x+31,ply.y-23) == 1) && right == true){
-					for (var qq:int=0;qq<gndArray.length;qq++) {
-						if (gndArray[qq].hitTestObject(ply)){
-							//ply.x = (gndArray[qq].x - 35);
-							ply.x -= 5;
-							ply.curSpeedX = 0;
-							//canRight = false;
-							//trace ("hi")
-						}
-					}
-				} //else {
-						//canRight = true;
-					//}
-				
-				if (getTile(ply.x,ply.y-52) == 1 || getTile(ply.x-29,ply.y-52) == 1 || getTile(ply.x+29,ply.y-52) == 1){
-					ply.y += 3;
-					ply.gravSpeed = 0;
-				}
+				//			} else if ((getTile(ply.x,ply.y) == 2 || getTile(ply.x-29,ply.y) == 2 || getTile(ply.x+29,ply.y) == 2) && drop == false) {
+				//				if (jumping != true){
+				//					ply.y -= ply.gravSpeed;
+				//				}
+				//				//ply.y -= ply.gravSpeed;
+				//				
+				//				//trace ("hiya");
+				//			} else if ((getTile(ply.x,ply.y) == 2 || getTile(ply.x-29,ply.y) == 2 || getTile(ply.x+29,ply.y) == 2) && drop == true) {
+				//				jUp = true;
+				//			}
+				//		//} 
+				//		
+				//		if (jumping == false) {
+				//			if ((getTile(ply.x,ply.y+1) == 2 || getTile(ply.x-29,ply.y+1) == 2 || getTile(ply.x+29,ply.y+1) == 2) && drop == true){
+				//				jUp = true;
+				//			} else {
+				//				jUp = false;
+				//				ply.gravSpeed = 0;
+				//			}
+				//		} else {
+				//			jUp = true;
+				//		}
+				//			
+				//		if (ply.gravSpeed >= 0 && drop == false) {
+				//			jUp = false;
+				//		}
+				//	//}
+				//}
+				//	
+				//if (getTile(ply.x, ply.y) == 0){
+				//	jUp = true; 
+				//}
+				//	
+				//	
+				//	//trace (getTile(ply.x,ply.y));
+				//	//trace (gndArray.length);
+				//
+				//if ((getTile(ply.x-31,ply.y-2) == 1 || getTile(ply.x-31,ply.y-23) == 1) && left == true) {
+				//	//for (var vv:int=0;vv<gndArray.length;vv++) {
+				//		//if (gndArray[vv].hitTestObject(ply)) {
+				//			//ply.x = (gndArray[vv].x + 75);
+				//			ply.x += 5;
+				//			ply.curSpeedX = 0;
+				//			//canLeft = false;
+				//			//trace ("hi")
+				//		//}
+				//	}
+				// //else {
+				//		//canLeft = true;
+				//	//}
+				//
+				//if ((getTile(ply.x+31,ply.y-2) == 1 || getTile(ply.x+31,ply.y-23) == 1) && right == true){
+				//	//for (var qq:int=0;qq<gndArray.length;qq++) {
+				//		//if (gndArray[qq].hitTestObject(ply)){
+				//			//ply.x = (gndArray[qq].x - 35);
+				//			ply.x -= 5;
+				//			ply.curSpeedX = 0;
+				//			//canRight = false;
+				//			//trace ("hi")
+				//		//}
+				//	//}
+				//} //else {
+				//		//canRight = true;
+				//	//}
+				//
+				//if (getTile(ply.x,ply.y-52) == 1 || getTile(ply.x-29,ply.y-52) == 1 || getTile(ply.x+29,ply.y-52) == 1){
+				//	ply.y += 3;
+				//	ply.gravSpeed = 0;
+				//}
 			
 				if (jUp == true) {
 					if (ply.gravSpeed > ply.gravMax) {
@@ -342,12 +404,11 @@ package  {
 					ply.right(5);
 				}
 				
-				for (var h:int;h<gndArray.length;h++){
-					//colS(ply,gndArray[h])
+				for (var h:int;h<colArray.length;h++){
+					colS(ply,colArray[h])
 				}
 				
-				
-				for (var i:int;i<doorList.length;i++) {
+				/*for (var i:int;i<doorList.length;i++) {
 					if (removeRenders == true) {
 						removeChild(doorList[i]);
 						doorList.removeAt(i);
@@ -356,18 +417,15 @@ package  {
 							removeRenders == false;
 						}
 					}
-				}
+				}*/
 				
-				if (ply.hitTestObject(door)) {
-					lvlDestruct();
-					//lvlConstruct(2);
+				if (ply.hitTestObject(dorArray[0])) {
 					gotoAndStop(2);
 					topDown = true;
 					sideScroll = false;
 					
 					addChild(map);
 					setChildIndex(map,0);
-					//trace ("hi");
 					dly = util.randNum(5000,15000);
 					
 					if (doorList.length < 1) {
@@ -381,7 +439,7 @@ package  {
 				for (var k:int;k<doorList.length;k++) {
 					if (ply.hitTestObject(doorList[k])) {
 						gotoAndStop(1);
-						lvlConstruct(0);
+						//lvlConstruct(0);
 						topDown = false;
 						sideScroll = true;
 						removeChild(map);

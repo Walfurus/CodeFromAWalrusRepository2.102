@@ -13,7 +13,9 @@
 		
 		private const maxSpeed:Number = 5;		//Maximum x Speed Constant
 		public var curSpeedX:Number = 0;
-		public var curSpeedY:Number = 0;			
+		public var curSpeedY:Number = 0;
+		
+		public var curJump:Boolean = false;
 		
 		public function left(sL:Number):void {
 			curSpeedX = -sL;
@@ -39,13 +41,14 @@
 		public function jumpStart(sY:Number): void {
 			if (isJumping == false && gravSpeed == 0){
 				isJumping = true;
+				//curJump = true;
 				gravSpeed = -sY;
 				//trace ("hi");
 			}
 		}
 		
 		public function jumpStop(): void {
-			if (isJumping == true && gravSpeed < 0) {
+			if (gravSpeed < 0) {
 				//isJumping = false;
 				gravSpeed *= floatV;
 			}
