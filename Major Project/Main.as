@@ -30,47 +30,6 @@ package  {
 		private var ply:Player = new Player();
 		private var map:Map = new Map();
 		
-		private var tileSet:Array = [[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-									  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
-									 
-									 [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,2,2,2,2,2,2,0,0,0,0,0,0,0,0,2,2,2,2,2,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-									  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
-									  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
-									  
-									 [[0,0],
-									  [0,0]]];
-		
 		private var colTArray:Array = new Array();
 		private var lvlSelect:uint = 1;
 		
@@ -89,32 +48,44 @@ package  {
 		private function inital():void {
 			lvlConstruct(0);
 			jUp = true;
+			//lvlDestruct();
 		}
 		
 		private function lvlConstruct(lvl:int):void {
 			switch (lvl) {
 				case 0:
-				spawnPlat(52.5,563.45,2);
-				spawnPlat(387.5,381.5,1);
-				spawnPlat(609.5,222.55,1);
-				spawnPlat(609.5,222.55,1);
-				spawnPlat(971.45,515.45,2);
-				spawnPlat(1820.35,357.5,1);
-				spawnPlat(2417.3,598.45,2);
-				spawnPlat(3227.2,399.5,1);
-				spawnPlat(3738.2,187.55,1);
-				spawnPlat(4299.15,-47.45,2);
-				spawnPlat(3403.95,1244.45,0);
-				spawnPlat(3689.2,1399.45,1);
-				spawnPlat(4627.1,-164.85,3);
+					spawnPlat(52.5,563.45,2);
+					spawnPlat(387.5,381.5,1);
+					spawnPlat(609.5,222.55,1);
+					spawnPlat(609.5,222.55,1);
+					spawnPlat(971.45,515.45,2);
+					spawnPlat(1820.35,357.5,1);
+					spawnPlat(2417.3,598.45,2);
+					spawnPlat(3227.2,399.5,1);
+					spawnPlat(3738.2,187.55,1);
+					spawnPlat(4299.15,-47.45,2);
+					spawnPlat(3403.95,1244.45,0);
+					spawnPlat(3689.2,1399.45,1);
+					spawnPlat(4627.1,-164.85,3);
+					spawnPlat(3878.25,1294.9,4);
+				break;
+				case 1:
+					
+				break;
 			}
 		}
 		
 		private function lvlDestruct():void {
-			gndArray.length = 0;
-			removeChild(tiles);
-			tiles = new MovieClip();
-			//colTArray.length = 0;
+			for (var s:int;s<colArray.length;s++){
+				removeChild(colArray[s]);
+				
+			}
+			for (var w:int;w<pArray.length;w++) {
+				removeChild(pArray[w]);
+				
+			}
+			colArray = [];
+			pArray = [];
 		}
 		
 		private function setupPly():void {
@@ -132,10 +103,17 @@ package  {
 		private var canLeft:Boolean = true;
 		private var canRight:Boolean = true;
 		private var canJump:Boolean = true;
+		private var yesFly:Boolean = false;
 		
 		private function keyPress(k:KeyboardEvent):void {
 			if (k.keyCode == Keyboard.SPACE && /*getTile(ply.x,ply.y+2) == 1 &&*/ sideScroll == true) {
-				ply.jumpStart(20);
+				ply.jumpStart(25);
+				if (fly == true && ply.isJumping == true) {
+					yesFly = true;
+					ply.isJumping == true;
+				} else {
+					ply.checkDJump(20);
+				}
 				//jUp = true;
 				jumping = true;
 			}
@@ -158,6 +136,7 @@ package  {
 		private function keyRelease(k:KeyboardEvent):void {
 			if (k.keyCode == Keyboard.SPACE) {
 				ply.jumpStop();
+				yesFly = false;
 				jumping = false;
 			}
 			
@@ -205,46 +184,8 @@ package  {
 		private var tUp:Boolean = false;
 		private var tDown:Boolean = false;
 		
-		function endTime(e:TimerEvent):void {
-			var door:DebugDoor = new DebugDoor();
-			doorList.push(door);
-			door.x = ply.x + util.randNum(-500,500);
-			if (ply.x == Math.abs(door.x)) {
-				door.x = ply.x + util.randNum(-500,500);
-			}
-			door.y = ply.y + util.randNum(-400,400);
-			if (ply.y == Math.abs(door.y)) {
-				door.y = ply.y + util.randNum(-400,400);
-			}
-			addChild(door);
-			dly = util.randNum(1000,3000);
-			trace(dly);
-		}
-		
-		private var gndArray:Array = new Array();
-		public var tiles:MovieClip = new MovieClip();
-		
-		private function lConstruct(layout:Array) {
-			for (var q:int=0;q<layout[0].length;q++) {
-				for (var s:int=0;s<layout.length;s++) {
-					var curTile:Tile = new Tile();
-					curTile.x = q*40;
-					curTile.y = s*40;
-					curTile.name = q+"-"+s;
-					tiles.addChild(curTile);
-					gndArray.push(curTile);
-					curTile.gotoAndStop(int(layout[s][q])+1);
-					trace ("bulding");
-				}
-			}
-				addChild(tiles);
-		}
-		
-		//private var gameLay:Array = new Array();
-		
-
 		private var colArray:Array = new Array();
-		private var dorArray:Array = new Array();
+		private var pArray:Array = new Array();
 		
 		public function getTile(xs,ys){
 			if(ys>0 && xs>0 && (colTArray[0].length)*40>xs && (colTArray.length)*40>ys){
@@ -281,111 +222,73 @@ package  {
 						var dor:Door = new Door();
 						dor.x = xP;
 						dor.y = yP;
-						dorArray.push(dor);
+						pArray.push(dor);
 						addChild(dor);
 					break;
+					case 4:
+						var jPck:JPack = new JPack();
+						jPck.x = xP;
+						jPck.y = yP;
+						pArray.push(jPck);
+						addChild(jPck);
+					break;
+						
 			}
 		}
 		
 		private var gndDebug:Boolean = false;
 		private var testInt:Number;
+		private var fly:Boolean = false;
+		
+		private var platL:Boolean = false;
+		private var platR:Boolean = false;
+		private var platD:Boolean = false;
+		private var platU:Boolean = false;
+		
+		private var someInt:int;
+		
+		private var mSpeedX:Number = 6;
 		
 		private function globalLoop(e:Event):void {
 			
-			trace(jumping);
+			
 			
 			if (sideScroll == true) {
 				
-				if (ply.x <= 70) {
-					ply.x = 71;
+				if (yesFly == true && fuel.checkV() == false) {
+					ply.checkFly(1.5);
+					fuel.updateA(0.002);
 				}
 				
-				if (ply.x >= 1209) {
-					ply.x = 1209;
+				if (ply.x <= 140) {
+					ply.x = 141;
+					platL = true;
+				} else {
+					platL = false;
 				}
 				
+				if (ply.x >= 850) {
+					ply.x = 849;
+					platR = true;
+				} else {
+					platR = false;
+				}
 				
+				if (ply.y < 50) {
+					ply.y = 50
+					platU = true;
+				} else {
+					platU = false;
+				}
 				
-				//if ((getTile(ply.x,ply.y) == 1 || getTile(ply.x-29,ply.y) == 1 || getTile(ply.x+29,ply.y) == 1) || (getTile(ply.x,ply.y) == 2 || getTile(ply.x-29,ply.y) == 2 || getTile(ply.x+29,ply.y) == 2) || (getTile(ply.x,ply.y) == 3 || getTile(ply.x-29,ply.y) == 3 || getTile(ply.x+29,ply.y) == 3) || (getTile(ply.x,ply.y) == 4 || getTile(ply.x-29,ply.y) == 4 || getTile(ply.x+29,ply.y+1) == 4) || (getTile(ply.x,ply.y) == 5 || getTile(ply.x-29,ply.y) == 5 || getTile(ply.x+29,ply.y) == 5) || (getTile(ply.x,ply.y) == 6 || getTile(ply.x-29,ply.y) == 6 || getTile(ply.x+29,ply.y) == 6)){
-				//	//ply.y -= 1;
-				//	//jUp = false;
-				//	//for (var ss:int=0;ss<gndArray.length;ss++) {
-				//		//if (ply.hitTestObject(gndArray[ss])){
-				//			jUp == false;
-				//			if ((getTile(ply.x,ply.y) == 1 || getTile(ply.x-29,ply.y) == 1 || getTile(ply.x+29,ply.y) == 1)) {
-				//				if (jumping != true) {
-				//					ply.y -= ply.gravSpeed;
-				//				}
-
-				//			} else if ((getTile(ply.x,ply.y) == 2 || getTile(ply.x-29,ply.y) == 2 || getTile(ply.x+29,ply.y) == 2) && drop == false) {
-				//				if (jumping != true){
-				//					ply.y -= ply.gravSpeed;
-				//				}
-				//				//ply.y -= ply.gravSpeed;
-				//				
-				//				//trace ("hiya");
-				//			} else if ((getTile(ply.x,ply.y) == 2 || getTile(ply.x-29,ply.y) == 2 || getTile(ply.x+29,ply.y) == 2) && drop == true) {
-				//				jUp = true;
-				//			}
-				//		//} 
-				//		
-				//		if (jumping == false) {
-				//			if ((getTile(ply.x,ply.y+1) == 2 || getTile(ply.x-29,ply.y+1) == 2 || getTile(ply.x+29,ply.y+1) == 2) && drop == true){
-				//				jUp = true;
-				//			} else {
-				//				jUp = false;
-				//				ply.gravSpeed = 0;
-				//			}
-				//		} else {
-				//			jUp = true;
-				//		}
-				//			
-				//		if (ply.gravSpeed >= 0 && drop == false) {
-				//			jUp = false;
-				//		}
-				//	//}
-				//}
-				//	
-				//if (getTile(ply.x, ply.y) == 0){
-				//	jUp = true; 
-				//}
-				//	
-				//	
-				//	//trace (getTile(ply.x,ply.y));
-				//	//trace (gndArray.length);
-				//
-				//if ((getTile(ply.x-31,ply.y-2) == 1 || getTile(ply.x-31,ply.y-23) == 1) && left == true) {
-				//	//for (var vv:int=0;vv<gndArray.length;vv++) {
-				//		//if (gndArray[vv].hitTestObject(ply)) {
-				//			//ply.x = (gndArray[vv].x + 75);
-				//			ply.x += 5;
-				//			ply.curSpeedX = 0;
-				//			//canLeft = false;
-				//			//trace ("hi")
-				//		//}
-				//	}
-				// //else {
-				//		//canLeft = true;
-				//	//}
-				//
-				//if ((getTile(ply.x+31,ply.y-2) == 1 || getTile(ply.x+31,ply.y-23) == 1) && right == true){
-				//	//for (var qq:int=0;qq<gndArray.length;qq++) {
-				//		//if (gndArray[qq].hitTestObject(ply)){
-				//			//ply.x = (gndArray[qq].x - 35);
-				//			ply.x -= 5;
-				//			ply.curSpeedX = 0;
-				//			//canRight = false;
-				//			//trace ("hi")
-				//		//}
-				//	//}
-				//} //else {
-				//		//canRight = true;
-				//	//}
-				//
-				//if (getTile(ply.x,ply.y-52) == 1 || getTile(ply.x-29,ply.y-52) == 1 || getTile(ply.x+29,ply.y-52) == 1){
-				//	ply.y += 3;
-				//	ply.gravSpeed = 0;
-				//}
+				if (ply.y > 650) {
+					ply.y = 645;
+					platD = true;
+					trace("up");
+				} else {
+					platD = false;
+					trace("down");
+				}
 			
 				if (jUp == true) {
 					if (ply.gravSpeed > ply.gravMax) {
@@ -397,15 +300,49 @@ package  {
 				}
 				
 				if (left == true) {
-					ply.left(5);
+					ply.left(mSpeedX);
 				}
 				
 				if (right == true) {
-					ply.right(5);
+					ply.right(mSpeedX);
 				}
 				
 				for (var h:int;h<colArray.length;h++){
 					colS(ply,colArray[h])
+					
+					if (platL == true) {
+						colArray[h].x += mSpeedX;
+					}
+					
+					if (platR == true) {
+						colArray[h].x -= mSpeedX;
+					}
+					
+					if (platU == true) {
+						colArray[h].y -= ply.gravSpeed;
+					}
+					
+					if (platD == true) {
+						colArray[h].y -= ply.gravSpeed;
+					}
+				}
+				
+				for (var f:int;f<pArray.length;f++) {
+					if (platL == true) {
+						pArray[f].x += mSpeedX;
+					}
+					
+					if (platR == true) {
+						pArray[f].x -= mSpeedX;
+					}
+					
+					if (platU == true) {
+						pArray[f].y -= ply.gravSpeed;
+					}
+					
+					if (platD == true) {
+						pArray[f].y -= ply.gravSpeed;
+					}
 				}
 				
 				/*for (var i:int;i<doorList.length;i++) {
@@ -418,51 +355,44 @@ package  {
 						}
 					}
 				}*/
-				
-				if (ply.hitTestObject(dorArray[0])) {
-					gotoAndStop(2);
-					topDown = true;
-					sideScroll = false;
-					
-					addChild(map);
-					setChildIndex(map,0);
-					dly = util.randNum(5000,15000);
-					
-					if (doorList.length < 1) {
-						timeC.start();
-						timeC.addEventListener(TimerEvent.TIMER, endTime);
+				for (var p:int;p<pArray.length;p++) {
+					if (ply.hitTestObject(pArray[p])) {
+						switch (pArray[p].checkID()) {
+							case 0:
+								gotoAndStop(2);
+								topDown = true;
+								sideScroll = false;
+								addChild(map);
+								setChildIndex(map,0);
+								lvlDestruct();
+							break;
+							case 1:
+								removeChild(pArray[p]);
+								pArray.removeAt(p);
+								fly = true;
+							break;	
+						}
 					}
 				}
 				
 			} else if (topDown == true) {
 				
-				for (var k:int;k<doorList.length;k++) {
-					if (ply.hitTestObject(doorList[k])) {
-						gotoAndStop(1);
-						//lvlConstruct(0);
-						topDown = false;
-						sideScroll = true;
-						removeChild(map);
-						//doorList[i].x = 50000;
-						removeRenders = true;
-						timeC.reset();
-						timeC.stop();
-					}
+				for (var k:int;k<pArray.length;k++) {
 					
 					if (tLeft == true) {
-						doorList[k].left(7);
+						pArray[k].x += 7;
 					}
 					
 					if (tRight == true) {
-						doorList[k].right(7);
+						pArray[k].x -= 7;
 					}
 					
 					if (tUp == true) {
-						doorList[k].up(7);
+						pArray[k].y += 7;
 					}
 					
 					if (tDown == true) {
-						doorList[k].down(7);
+						pArray[k].y -= 7;
 					}
 				}
 				
@@ -507,14 +437,16 @@ package  {
 			ply.y += ply.curSpeedY;
 		}
 		
+		private var bHit:Boolean = false;
+		
 		private function colS(colDefP:Object, colDefO:Object): void {
 			if (colDefO.hitTestObject(colDefP)) {
 				if (colDefP.x - colDefP.width / 2 <= colDefO.x + colDefO.width && colDefP.x + colDefP.width / 2 >= colDefO.x + colDefO.width && colDefP.curSpeedX < 0) {
-					colDefP.x = colDefO.x + colDefO.width + 1 + colDefP.width / 2;
 					colDefP.curSpeedX = 0;
 					left = false;
+					//colDefP.x = colDefO.x + colDefO.width + 1 + colDefP.width / 2;	
 				} else if (colDefP.x + colDefP.width / 2 >= colDefO.x && colDefP.x - colDefP.width / 2 <= colDefO.x && colDefP.curSpeedX > 0) {
-					colDefP.x = colDefO.x - 1 - colDefP.width / 2;
+					//colDefP.x = colDefO.x - 1 - colDefP.width / 2;
 					colDefP.curSpeedX = 0;
 					right = false;
 				} else {
@@ -530,6 +462,7 @@ package  {
 				}
 				//Local Handling
 				colDefP.isJumping = false;
+				colDefP.dJump = false;
 			}
 		}
 	}	
