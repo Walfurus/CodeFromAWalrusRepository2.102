@@ -48,7 +48,9 @@ package  {
 		private function inital():void {
 			lvlConstruct(0);
 			jUp = true;
-			//lvlDestruct();
+			fuel.x = 40;
+			fuel.y = 30;
+			addChild(fuel);
 		}
 		
 		private function lvlConstruct(lvl:int):void {
@@ -70,8 +72,30 @@ package  {
 					spawnPlat(3878.25,1294.9,4);
 				break;
 				case 1:
-					
+					spawnPlat(113.55,557.5,2);
+					spawnPlat(668.2,364.5,0);
+					spawnPlat(480.2,155.55,0);
+					spawnPlat(890.5,0,1);
+					spawnPlat(1421.4,190.55,1);
+					spawnPlat(1924.4,62.55,1);
+					spawnPlat(2486.95,120.55,0);
+					spawnPlat(2764,72.55,0);
+					spawnPlat(3179.25,19.5,2);
+					spawnPlat(3566.3,-247.45,1);
+					spawnPlat(3566.3,-495.45,1);
+					spawnPlat(4054.9,97.55,0);
+					spawnPlat(4414.2,-15.5,2);
+					spawnPlat(1094.4,746.45,2);
+					spawnPlat(1840.35,608.5,1);
+					spawnPlat(2336.3,821.45,1);
+					spawnPlat(2849.3,957.45,2);
+					spawnPlat(5078.6,-162.15,0);
+					spawnPlat(5338.8,-308.75,1);
+					spawnPlat(5721.45,-482.8,2);
 				break;
+				case 2:
+				break;
+					
 			}
 		}
 		
@@ -84,7 +108,11 @@ package  {
 				removeChild(pArray[w]);
 				
 			}
+			for (var t:int;t<vArray.length;t++) {
+				removeChild(vArray[t]);
+			}
 			colArray = [];
+			vArray = [];
 			pArray = [];
 		}
 		
@@ -108,7 +136,7 @@ package  {
 		private function keyPress(k:KeyboardEvent):void {
 			if (k.keyCode == Keyboard.SPACE && /*getTile(ply.x,ply.y+2) == 1 &&*/ sideScroll == true) {
 				ply.jumpStart(25);
-				if (fly == true && ply.isJumping == true) {
+				if (fly == true && ply.isJumping == true && fuel.scaleX > 0) {
 					yesFly = true;
 					ply.isJumping == true;
 				} else {
@@ -166,8 +194,6 @@ package  {
 			}
 		}
 
-		
-		
 		private var topDown:Boolean = false;
 		private var sideScroll:Boolean = true;
 		
@@ -186,37 +212,45 @@ package  {
 		
 		private var colArray:Array = new Array();
 		private var pArray:Array = new Array();
-		
-		public function getTile(xs,ys){
-			if(ys>0 && xs>0 && (colTArray[0].length)*40>xs && (colTArray.length)*40>ys){
-				return colTArray[Math.floor(ys/40)][Math.floor(xs/40)]
-			} else {
-				return (0);
-			}
-		}
+		private var vArray:Array = new Array();
 		
 		private function spawnPlat(xP:Number,yP:Number,tP:Number):void {
 				switch (tP) {
 					case 0:
 						var platS:PlatformS = new PlatformS();
+						var pMskS:PMaskS = new PMaskS();
 						platS.x = xP;
 						platS.y = yP;
+						pMskS.x = xP;
+						pMskS.y = yP;
 						colArray.push(platS);
-						addChild(platS);
+						vArray.push(pMskS);
+						addChildAt(platS,0);
+						addChildAt(pMskS,1);
 					break;
 					case 1:
 						var platM:PlatformM = new PlatformM();
+						var pMskM:PMaskM = new PMaskM();
 						platM.x = xP;
 						platM.y = yP;
+						pMskM.x = xP;
+						pMskM.y = yP;
 						colArray.push(platM);
-						addChild(platM);
+						vArray.push(pMskM);
+						addChildAt(platM,0);
+						addChildAt(pMskM,1);
 					break;
 					case 2:
 						var platL:PlatformL = new PlatformL();
+						var pMskL:PMaskL = new PMaskL();
 						platL.x = xP;
 						platL.y = yP;
+						pMskL.x = xP;
+						pMskL.y = yP;
 						colArray.push(platL);
-						addChild(platL);
+						vArray.push(pMskL);
+						addChildAt(platL,0);
+						addChildAt(pMskL,1);
 					break;
 					case 3:
 						var dor:Door = new Door();
@@ -232,7 +266,6 @@ package  {
 						pArray.push(jPck);
 						addChild(jPck);
 					break;
-						
 			}
 		}
 		
@@ -248,16 +281,19 @@ package  {
 		private var someInt:int;
 		
 		private var mSpeedX:Number = 6;
+		private var dragDrop:Boolean = false;
+		
+		private var fuel:Fuel = new Fuel();
 		
 		private function globalLoop(e:Event):void {
-			
-			
 			
 			if (sideScroll == true) {
 				
 				if (yesFly == true && fuel.checkV() == false) {
 					ply.checkFly(1.5);
 					fuel.updateA(0.002);
+				} else if (fuel.checkV() == true) {
+					fly = false;
 				}
 				
 				if (ply.x <= 140) {
@@ -275,7 +311,7 @@ package  {
 				}
 				
 				if (ply.y < 50) {
-					ply.y = 50
+					ply.y = 55
 					platU = true;
 				} else {
 					platU = false;
@@ -284,12 +320,10 @@ package  {
 				if (ply.y > 650) {
 					ply.y = 645;
 					platD = true;
-					trace("up");
 				} else {
 					platD = false;
-					trace("down");
 				}
-			
+				
 				if (jUp == true) {
 					if (ply.gravSpeed > ply.gravMax) {
 						ply.gravSpeed = ply.gravMax;
@@ -307,23 +341,29 @@ package  {
 					ply.right(mSpeedX);
 				}
 				
+				trace(ply.gravSpeed);
+				
 				for (var h:int;h<colArray.length;h++){
-					colS(ply,colArray[h])
+					colS(ply,colArray[h]);
 					
 					if (platL == true) {
 						colArray[h].x += mSpeedX;
+						vArray[h].x += mSpeedX;
 					}
 					
 					if (platR == true) {
 						colArray[h].x -= mSpeedX;
+						vArray[h].x -= mSpeedX;
 					}
 					
-					if (platU == true) {
+					if (platU == true && ply.gravSpeed != 1) {
 						colArray[h].y -= ply.gravSpeed;
+						vArray[h].y -= ply.gravSpeed;
 					}
 					
-					if (platD == true) {
+					if (platD == true && ply.gravSpeed != 1) {
 						colArray[h].y -= ply.gravSpeed;
+						vArray[h].y -= ply.gravSpeed;
 					}
 				}
 				
@@ -345,16 +385,6 @@ package  {
 					}
 				}
 				
-				/*for (var i:int;i<doorList.length;i++) {
-					if (removeRenders == true) {
-						removeChild(doorList[i]);
-						doorList.removeAt(i);
-						trace (doorList);
-						if (doorList.length <= 0) {
-							removeRenders == false;
-						}
-					}
-				}*/
 				for (var p:int;p<pArray.length;p++) {
 					if (ply.hitTestObject(pArray[p])) {
 						switch (pArray[p].checkID()) {
@@ -368,6 +398,7 @@ package  {
 							break;
 							case 1:
 								removeChild(pArray[p]);
+								fuel.resetF();
 								pArray.removeAt(p);
 								fly = true;
 							break;	
@@ -432,34 +463,34 @@ package  {
 						tDown = true;
 					}
 				}
+			} else if (dragDrop == true) {
+				
 			}
 			ply.x += ply.curSpeedX;
 			ply.y += ply.curSpeedY;
 		}
 		
-		private var bHit:Boolean = false;
-		
 		private function colS(colDefP:Object, colDefO:Object): void {
 			if (colDefO.hitTestObject(colDefP)) {
-				if (colDefP.x - colDefP.width / 2 <= colDefO.x + colDefO.width && colDefP.x + colDefP.width / 2 >= colDefO.x + colDefO.width && colDefP.curSpeedX < 0) {
-					colDefP.curSpeedX = 0;
-					left = false;
-					//colDefP.x = colDefO.x + colDefO.width + 1 + colDefP.width / 2;	
-				} else if (colDefP.x + colDefP.width / 2 >= colDefO.x && colDefP.x - colDefP.width / 2 <= colDefO.x && colDefP.curSpeedX > 0) {
-					//colDefP.x = colDefO.x - 1 - colDefP.width / 2;
-					colDefP.curSpeedX = 0;
-					right = false;
-				} else {
-					if (colDefP.y - colDefP.height < colDefO.y) {
+				//if (colDefP.x - colDefP.width / 2 <= colDefO.x + colDefO.width && colDefP.x + colDefP.width / 2 >= colDefO.x + colDefO.width && colDefP.curSpeedX < 0) {
+				//	//colDefP.curSpeedX = 0;
+				//	//left = false;
+				//	//colDefP.x = colDefO.x + colDefO.width + 1 + colDefP.width / 2;	
+				//} else if (colDefP.x + colDefP.width / 2 >= colDefO.x && colDefP.x - colDefP.width / 2 <= colDefO.x && colDefP.curSpeedX > 0) {
+				//	//colDefP.x = colDefO.x - 1 - colDefP.width / 2;
+				//	//colDefP.curSpeedX = 0;
+				//	//right = false;
+				//} else {
+					if (colDefP.y - colDefP.height < colDefO.y && colDefP.gravSpeed > 0) {
 						colDefP.y = colDefO.y; 
 						colDefP.gravSpeed = 0;
 					}
 					
-					if (colDefP.y > colDefO.y + colDefO.height && colDefP.gravSpeed < 0) {
-						colDefP.y = colDefO.y + colDefO.height + colDefP.height;
-						colDefP.gravSpeed = 0;
-					}
-				}
+					//if (colDefP.y > colDefO.y + colDefO.height && colDefP.gravSpeed < 0) {
+					//	colDefP.y = colDefO.y + colDefO.height + colDefP.height;
+					//	colDefP.gravSpeed = 0;
+					//}
+				//}
 				//Local Handling
 				colDefP.isJumping = false;
 				colDefP.dJump = false;

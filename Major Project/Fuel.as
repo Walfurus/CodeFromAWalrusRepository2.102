@@ -3,7 +3,11 @@
 	
 	public class Fuel extends MovieClip {
 		
-		private var ramp:Number = 1;
+		private var ramp:Number = 0;
+		
+		public function Fuel() {
+			this.amount.scaleX = ramp;
+		}
 		
 		public function updateA(rt:Number):void {
 			if (this.amount.scaleX > 0) {
@@ -12,6 +16,11 @@
 			} else {
 				this.amount.scaleX = 0;
 			}
+		}
+		
+		public function resetF():void {
+			ramp = 1;
+			this.amount.scaleX = ramp;
 		}
 		
 		public function checkV():Boolean {
